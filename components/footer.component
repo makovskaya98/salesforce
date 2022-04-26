@@ -1,0 +1,7 @@
+<apex:component id="footer">
+    <div class="footer">
+        <div class="red-footer-block">
+            <h3>{!$Organization.Name}</h3>
+        </div>
+    </div>
+</apex:component>

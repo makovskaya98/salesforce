@@ -1,0 +1,26 @@
+<apex:page id="GenereteInvoice" showHeader="false" controller="ContentVersionController"
+           applyHtmlTag="false" applyBodyTag="false" action="{!createContentVersion}">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    </style>
+    <apex:form>
+        <apex:pageBlock>
+            <div class="container">
+                <div>
+                    <h1>An invoice number for Opportunity has been created.</h1>
+                </div>
+                <div align="right">
+                    <apex:commandButton value="Update Page" action="{!createPDFFile}"
+                                        style="padding: 10px 20px; background: #0176d3;
+                                        color: #ffffff; border: 0">
+                    </apex:commandButton>
+                </div>
+            </div>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:iframe src="{!documentUrl}" id="theIframe"/>
+</apex:page>

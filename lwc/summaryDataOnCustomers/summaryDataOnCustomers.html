@@ -1,0 +1,170 @@
+<template>
+    <div class="slds-color__background_gray-1">
+        <div class="slds-p-around_medium lgc-bg" if:false={recordId}>
+            <lightning-input type="text"
+                             label="Search"
+                             onchange={searchData}>
+            </lightning-input>
+        </div>
+        <template for:each={accountToOpportunity} for:item="accToOpp">
+            <lightning-accordion allow-multiple-sections-open
+                                 onsectiontoggle={handleSectionToggle}
+                                 key={accToOpp}>
+                <lightning-accordion-section name={accToOpp.accountName} label={accToOpp.accountName}>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                           aria-labelledby="element-with-table-label other-element-with-table-label">
+                        <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Create Date">Create Date</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Close Date">Close Date</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Amount">Amount</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate slds-align_absolute-center"
+                                     title="Opportunity Product Button">Opportunity Product
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="slds-hint-parent" for:each={accToOpp.opportunities} for:item="opportunity"
+                            key={opportunity}>
+                            <td data-label="Opportunity Name">
+                                <div class="slds-truncate" title="Opportunity Name">{opportunity.Name}</div>
+                            </td>
+                            <td data-label="Create Date">
+                                <div class="slds-truncate" title="Create Date">{opportunity.CreatedDate}</div>
+                            </td>
+                            <td data-label="Close Date">
+                                <div class="slds-truncate" title="Close Date">{opportunity.CloseDate}</div>
+                            </td>
+                            <td data-label="Amount">
+                                <div class="slds-truncate" title="Amount">{opportunity.Amount}</div>
+                            </td>
+                            <td data-label="Button">
+                                <div class="slds-truncate slds-align_absolute-center" title="Opportunity Product">
+                                    <lightning-button variant="brand"
+                                                      data-record-id={opportunity.Id}
+                                                      label="Preview"
+                                                      title="Primary action"
+                                                      onclick={openModal}
+                                                      class="slds-m-left_x-small">
+                                    </lightning-button>
+                                </div>
+                                <template if:true={isModalOpen}>
+                                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01"
+                                             aria-modal="true" aria-describedby="modal-content-id-1"
+                                             class="slds-modal slds-fade-in-open">
+                                        <div class="slds-modal__container">
+                                            <header class="slds-modal__header">
+                                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                                        title="Close" onclick={closeModal}>
+                                                    <lightning-icon icon-name="utility:close"
+                                                                    alternative-text="close"
+                                                                    variant="inverse"
+                                                                    size="small"></lightning-icon>
+                                                    <span class="slds-assistive-text">Close</span>
+                                                </button>
+                                                <h2 class="slds-text-heading_medium slds-hyphenate">Opportunity
+                                                    Prroduct</h2>
+                                            </header>
+                                            <div class="slds-modal__content slds-p-around_medium">
+                                                <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                                                       aria-labelledby="element-with-table-label other-element-with-table-label">
+                                                    <thead>
+                                                    <tr class="slds-line-height_reset">
+                                                        <th class="" scope="col">
+                                                            <div class="slds-truncate" title="Product Name">
+                                                                Product Name
+                                                            </div>
+                                                        </th>
+                                                        <th class="" scope="col">
+                                                            <div class="slds-truncate" title="Quantity">
+                                                                Quantity
+                                                            </div>
+                                                        </th>
+                                                        <th class="" scope="col">
+                                                            <div class="slds-truncate" title="Cost per product">
+                                                                Cost per product
+                                                            </div>
+                                                        </th>
+                                                        <th class="" scope="col">
+                                                            <div class="slds-truncate" title="Subtotal">
+                                                                Subtotal
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr class="slds-hint-parent" for:each={productsInfo}
+                                                        for:item="product"
+                                                        key={product}>
+                                                        <td data-label="Opportunity Name">
+                                                            <div class="slds-truncate" title="Opportunity Name">
+                                                                {product.Product2.Name}
+                                                            </div>
+                                                        </td>
+                                                        <td data-label="Opportunity Name">
+                                                            <div class="slds-truncate" title="Quantity">
+                                                                {product.Quantity}
+                                                            </div>
+                                                        </td>
+                                                        <td data-label="Opportunity Name">
+                                                            <div class="slds-truncate" title="UnitPrice">
+                                                                {product.UnitPrice}
+                                                            </div>
+                                                        </td>
+                                                        <td data-label="Opportunity Name">
+                                                            <div class="slds-truncate" title="Subtotal">
+                                                                {product.Subtotal}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <footer class="slds-modal__footer">
+                                                <lightning-button variant="brand"
+                                                                  label="Cancel"
+                                                                  onclick={closeModal}
+                                                                  class="slds-m-left_x-small">
+                                                </lightning-button>
+                                                <lightning-button variant="brand"
+                                                                  label="Ok"
+                                                                  onclick={submitDetails}
+                                                                  class="slds-m-left_x-small">
+                                                </lightning-button>
+                                            </footer>
+                                        </div>
+                                    </section>
+                                    <div class="slds-backdrop slds-backdrop_open"></div>
+                                </template>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </template>
+        <div class="pagination slds-align-middle slds-container_left" if:false={recordId}>
+            <lightning-button variant="brand"
+                              label="Previous"
+                              onclick={getPrevious}
+                              class="slds-m-left_x-small" disabled={disabledPrevious}>
+            </lightning-button>
+            <lightning-button variant="brand"
+                              label="Next"
+                              onclick={getNext}
+                              class="slds-m-left_x-small" disabled={disabledNext}>
+            </lightning-button>
+        </div>
+    </div>
+</template>

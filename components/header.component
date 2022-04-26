@@ -1,0 +1,23 @@
+<apex:component id="header" controller="OpportunityController">
+    <div class="header">
+        <apex:styleSheet value="{!URLFOR($Resource.Style)}"/>
+        <div class="red-block"></div>
+        <div class="header-container">
+            <div class="header-logo"><img src="{!$Resource.Logo}" width="70px" height="70px"/></div>
+            <div class="header-org-info">
+                <div><h3>{!$Organization.Name}</h3></div>
+                <div>{!$Organization.City}</div>
+                <div>{!opportunity.Owner.Name}</div>
+            </div>
+            <div class="header-invoice-info">
+                <div><h2 class="invoice">INVOICE</h2></div>
+                <div class="header-invoice-item">
+                    <apex:outputText value="{0,date,d MMM yyyy}">
+                        <apex:param value="{!today()}" />
+                    </apex:outputText>
+                </div>
+                <div class="header-invoice-item">{!opportunity.Invoice_Number__c}</div>
+            </div>
+        </div>
+    </div>
+</apex:component>

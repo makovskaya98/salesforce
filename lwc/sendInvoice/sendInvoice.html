@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-m-top_medium slds-m-bottom_x-large">
+        <div class="slds-p-around_medium slds-align_absolute-center lgc-bg">
+            <h1 class="slds-text-font_monospace">Send Email</h1>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Invoice number" value={invoiceNumber}
+                             read-only="true"></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input-rich-text value={emailBodyText} onchange={handleChange}>
+            </lightning-input-rich-text>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Contact name" value={contactName} read-only="true"></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Contact email" value={contactEmail} read-only="true"></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-button variant="brand" label="Preview" title="Primary action" onclick={previewFile}
+                              class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Send" title="Primary action" onclick={sendEmail}
+                              class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </div>
+</template>

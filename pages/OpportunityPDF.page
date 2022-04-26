@@ -1,0 +1,40 @@
+<apex:page id="OpportunityPDF" showHeader="false" standardController="Opportunity"
+           extensions="OpportunityControllerExtension" applyHtmlTag="false"
+           applyBodyTag="false" renderAs="pdf">
+    <c:header/>
+    <c:footer/>
+    <div class="content">
+        <div class="main-container">
+            <div class="bill-to-information">
+                <div class="bill-to">BILL TO</div>
+                <div>{!contact.Name}</div>
+                <div>{!contact.Account.Name}</div>
+                <div>{!contact.Phone}</div>
+                <div>{!contact.Email}</div>
+            </div>
+            <table class="product-information">
+                <tr>
+                    <th>PRODUCT NAME</th>
+                    <th>QTY</th>
+                    <th>UNIT PRICE</th>
+                    <th>TOTAL</th>
+                </tr>
+                <apex:variable value="{!1}" var="counter"/>
+                <apex:repeat value="{!opportunityLineItems}" var="oppLineItem">
+                    <tr style="background-color:{!IF(MOD(counter,2)==0,'#d3d3d3','#ffffff')};">
+                        <td>{!oppLineItem.Product2.Name}</td>
+                        <td class="column-quantity">{!oppLineItem.Quantity}</td>
+                        <td class="column-unit-price">{!oppLineItem.UnitPrice}</td>
+                        <td class="column-total-price">{!oppLineItem.TotalPrice}</td>
+                    </tr>
+                </apex:repeat>
+                <tr class="total-line">
+                    <td class="total-line-item"></td>
+                    <td class="total-line-item"></td>
+                    <td class="column-unit-price">Balance Due</td>
+                    <td class="column-total-price">${!totalPrice}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</apex:page>

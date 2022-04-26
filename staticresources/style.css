@@ -1,0 +1,149 @@
+@page {
+    margin: 400px 10px 150px 10px;
+
+    @top-left {
+        content: element(header);
+    }
+    @bottom-left {
+        content: element(footer);
+    }
+}
+
+div.header {
+    position: running(header);
+    width: 100%;
+    margin-right: 10px;
+}
+
+div.footer {
+    position: running(footer);
+    width: 100%;
+    margin-right: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.header-container {
+    white-space: nowrap;
+    background: #f8f8f8;
+    padding: 20px;
+}
+
+.header-logo {
+    padding: 20px;
+    white-space: normal;
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    text-align: center;
+}
+
+.header-org-info {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+}
+
+.header-invoice-info {
+    white-space: normal;
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+}
+
+.invoice {
+    color: #999999;
+}
+
+.red-block {
+    height: 20px;
+    background: #ff6500;
+}
+
+.header-invoice-item {
+    padding: 30px 0 10px 0;
+    border-bottom: 1px solid silver;
+}
+
+.bill-to {
+    color: blue;
+    font-weight: bold;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid silver;
+}
+
+.main-container {
+    padding: 0 20px;
+}
+
+.product-information{
+    margin-top: 20px;
+}
+
+.product-information tr th {
+    background: #ff6500;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+.column-quantity {
+    text-align: center;
+}
+
+.column-unit-price {
+    text-align: right;
+}
+
+.column-total-price {
+    text-align: right;
+}
+
+.bill-to-information div {
+    padding: 5px 0;
+}
+
+td {
+    border-right: 1px solid #a6a5a5;
+    border-left: 1px solid #a6a5a5;
+}
+
+.total-line td {
+    border: 0;
+}
+
+tr.total-line .total-line-item {
+    border-top: 1px solid #a6a5a5;
+}
+
+tr.total-line .column-unit-price {
+    color: blue;
+    font-weight: bold;
+    padding: 10px 0;
+    border-top: 1px solid #000000;
+}
+
+tr.total-line .column-total-price {
+    border-top: 1px solid #000000;
+    font-size: 20px;
+    font-weight: bold;
+    background: #fbc1c1;
+}
+
+.red-footer-block {
+    background: #ff6500;
+    color: white;
+    text-align: center;
+}
+
+.red-footer-block h3 {
+    margin: 0px;
+}
+
+
+
+
